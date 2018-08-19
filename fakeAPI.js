@@ -12,11 +12,11 @@ function fakeAPI(n) {
   return prices
 }
 
-function generateValues(closePrice) {
+function generateValues(seed) {
   let values = []
 
   for (var i = 0; i < 4; i++)
-    values[i] = closePrice + Math.random(-.5, 1) * closePrice
+    values[i] = round(seed + random(-.015, .0168) * seed)
 
   return values
 }
