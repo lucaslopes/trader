@@ -8,7 +8,7 @@ let orders  = []
 let traders = []
 
 function preload() {
-  btc = loadJSON('btc.json')
+  btc = loadJSON('data/btc.json')
 }
 
 function setup() {

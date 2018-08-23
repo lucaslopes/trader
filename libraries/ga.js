@@ -6,10 +6,10 @@ function nextGeneration() {
 
 function generate(oldTraders) {
   let newTraders = [];
-  for (let i = 0; i < numTraders; i++) {
+  for (let i = 0; i < numTraders; i += 2) {
     let traderBTC = poolSelection(oldTraders, 'btc');
     let traderUSD = poolSelection(oldTraders, 'usd');
-    newTraders[i] = poolSelection(traderBTC, oldTraders, i)
+    newTraders[i] = crossover(traderBTC, traderUSD, i)
     newTraders[i + 1] = crossover(traderUSD, traderBTC, i + 1)
   }
   return newTraders;
