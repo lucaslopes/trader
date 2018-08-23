@@ -1,9 +1,15 @@
-const numCandles = 80
+const numCandles = 1745
 const numTraders = 1000
+let btc
+
 let prices  = []
 let candles = []
 let orders  = []
 let traders = []
+
+function preload() {
+  btc = loadJSON('btc.json')
+}
 
 function setup() {
   createCanvas(800, 300)
@@ -11,7 +17,9 @@ function setup() {
   let padding = (1 / (width / (numCandles + 1))) / numCandles * 1000
   let candleWidth = width / numCandles
 
-  prices  = fakeAPI(numCandles)
+  // prices  = fakeAPI(numCandles)
+  for (var i = 0; i < numCandles; i++)
+    prices.push(btc[i])
   candles = createCandles(prices, candleWidth, padding)
 
   for (var i = 0; i < numTraders; i++)
