@@ -1,6 +1,3 @@
-// let m = new Matrix(3,2);
-
-
 class Matrix {
   constructor(rows, cols) {
     this.rows = rows;

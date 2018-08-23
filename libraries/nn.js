@@ -1,5 +1,3 @@
-// Other techniques for learning
-
 class ActivationFunction {
   constructor(func, dfunc) {
     this.func = func;
@@ -17,9 +15,7 @@ let tanh = new ActivationFunction(
   y => 1 - (y * y)
 );
 
-
 class NeuralNetwork {
-  // TODO: document what a, b, c are
   constructor(a, b, c) {
     if (a instanceof NeuralNetwork) {
       this.input_nodes = a.input_nodes;
@@ -47,11 +43,8 @@ class NeuralNetwork {
       this.bias_o.randomize();
     }
 
-    // TODO: copy these as well
     this.setLearningRate();
     this.setActivationFunction();
-
-
   }
 
   predict(input_array) {
@@ -106,7 +99,6 @@ class NeuralNetwork {
     gradients.multiply(output_errors);
     gradients.multiply(this.learning_rate);
 
-
     // Calculate deltas
     let hidden_T = Matrix.transpose(hidden);
     let weight_ho_deltas = Matrix.multiply(gradients, hidden_T);
@@ -138,14 +130,10 @@ class NeuralNetwork {
     // error.print();
   }
 
-  serialize() {
-    return JSON.stringify(this);
-  }
-
   static deserialize(data) {
-    if (typeof data == 'string') {
+    if (typeof data == 'string')
       data = JSON.parse(data);
-    }
+
     let nn = new NeuralNetwork(data.input_nodes, data.hidden_nodes, data.output_nodes);
     nn.weights_ih = Matrix.deserialize(data.weights_ih);
     nn.weights_ho = Matrix.deserialize(data.weights_ho);
@@ -155,21 +143,19 @@ class NeuralNetwork {
     return nn;
   }
 
+  serialize() { return JSON.stringify(this); }
 
   // Adding function for neuro-evolution
-  copy() {
-    return new NeuralNetwork(this);
-  }
+  copy() { return new NeuralNetwork(this); }
 
   mutate(rate) {
     function mutate(val) {
       if (Math.random() < rate) {
         // return 2 * Math.random() - 1;
         return val + randomGaussian(0, 0.1);
-      } else {
-        return val;
-      }
+      } else return val;
     }
+
     this.weights_ih.map(mutate);
     this.weights_ho.map(mutate);
     this.bias_h.map(mutate);
