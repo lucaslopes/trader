@@ -45,6 +45,7 @@ function draw() {
 
   showBest()
   // noLoop()
+  nextGeneration()
 }
 
 function createCandles(prices, candleWidth, padding) {

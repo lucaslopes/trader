@@ -9,7 +9,12 @@ class Trader {
       btc: 1,
       usd: 1000
     },
+    this.fitness = {
+      btc: 0,
+      usd: 0
+    }
   }
+
   think(candle) {
     let inputs = this.normalizeInputs(candle)
     let output = this.brain.predict(inputs)
