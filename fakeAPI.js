@@ -1,7 +1,6 @@
-function fakeAPI(n) {
+function fakeAPI(n, closePrice = 1000) {
   let prices = []
 
-  let closePrice = 1000
   for (let i = 0; i < n; i++) {
     let values = generateValues(closePrice)
     let newPrice = createPrice(values, closePrice)
