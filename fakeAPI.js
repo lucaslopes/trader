@@ -14,8 +14,16 @@ function fakeAPI(n, closePrice = 1000) {
 function generateValues(seed) {
   let values = []
 
-  for (var i = 0; i < 4; i++)
-    values[i] = round(seed + random(-.015, .0168) * seed)
+  for (let i = 0; i < 4; i++) {
+    let n
+    for (let j = -1; j < i; j++) {
+      if (n == values[j]) {
+        n = round(seed + random(-.0168, .0168) * seed)
+        j = -1
+      }
+    }
+    values[i] = n
+  }
 
   return values
 }
